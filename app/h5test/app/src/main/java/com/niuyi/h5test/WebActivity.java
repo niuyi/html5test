@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 public class WebActivity extends AppCompatActivity {
 
-    private static final String URL = "http://192.168.31.208:8000/";
 //    private static final String URL = "http://baidu.com/";
     private WebView mView;
 
@@ -22,13 +21,15 @@ public class WebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
+        String path = getIntent().getStringExtra("path");
+
         TextView tv = (TextView)findViewById(R.id.id_tv);
-        tv.setText(URL);
+        tv.setText(path);
 
         mView = (WebView)findViewById(R.id.id_web_view);
         WebSettings settings = mView.getSettings();
         settings.setJavaScriptEnabled(true);
-                                                                                                         
+
         mView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -49,7 +50,7 @@ public class WebActivity extends AppCompatActivity {
 
         mView.setWebChromeClient(new WebChromeClient());
 
-        mView.loadUrl(URL);
+        mView.loadUrl(path);
     }
 
     @Override
