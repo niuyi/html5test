@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<h1>
+this is a test page!!!
+</h1>
+
+<div style="text-align:center;">
+	<button onclick="playPause()">播放、暂停</button> 
+	<button onclick="makeBig()">big</button>
+	<button onclick="makeSmall()">small</button>
+	<br /> 
+	<br /> 
+
+<video id="video1" width="320" height="240" controls="controls" loop="loop" autoplay="autoplay">
+  <source src="/video/movie.mp4" type="video/mp4">
+  
+Your browser does not support the video tag.
+</video>
+
+</div>
+
+<script type="text/javascript">
+	var myVideo = document.getElementById("video1");
+
+	function playPause()
+	{ 
+		if (myVideo.paused) 
+		  myVideo.play(); 
+		else 
+		  myVideo.pause(); 
+	} 
+
+	function makeBig()
+	{
+		myVideo.width = 560;
+	}
+
+	function makeSmall()
+	{
+		myVideo.width = 320;
+	}
+</script>
+
+</body>
+</html>
