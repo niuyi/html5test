@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css">
+#div1 {width:300px; height:150px;padding:10px;border:1px solid #aaaaaa;}
+#div2 {width:300px; height:150px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+
+<script type="text/javascript">
+	function drag(event)
+	{
+		event.dataTransfer.setData("Text", event.target.id);
+	}
+
+	function drop(event)
+	{
+		event.preventDefault();
+		var id = event.dataTransfer.getData("Text");
+		event.target.appendChild(document.getElementById(id));
+	}
+
+	function allowDrop(event)
+	{
+		event.preventDefault();
+	}
+
+</script>
+
+</head>
+<body>
+<h1>
+this is a test page for drop
+</h1>
+
+<img id="logo" src="img/logo.jpg" draggable="true" ondragstart="drag(event)">
+
+
+<br/><br/><br/>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br/><br/><br/>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br/>
+
+
+
+</body>
+</html>

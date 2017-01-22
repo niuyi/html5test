@@ -1,10 +1,12 @@
 package com.niuyi.h5test;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -30,6 +32,14 @@ public class WebActivity extends AppCompatActivity {
         WebSettings settings = mView.getSettings();
         settings.setJavaScriptEnabled(true);
 
+        settings.setDatabaseEnabled(true);
+        String dir = this.getApplicationContext().getDir("database", Context.MODE_PRIVATE).getPath();
+        settings.setGeolocationEnabled(true);
+        settings.setGeolocationDatabasePath(dir);
+
+        settings.setDomStorageEnabled(true);
+
+
         mView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -48,7 +58,14 @@ public class WebActivity extends AppCompatActivity {
             }
         });
 
-        mView.setWebChromeClient(new WebChromeClient());
+        mView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+                callback.invoke(origin, true, false);
+                super.onGeolocationPermissionsShowPrompt(origin, callback);
+
+            }
+        });
 
         mView.loadUrl(path);
     }

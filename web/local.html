@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<h1>
+this is a test page for storage!!!
+</h1>
+
+
+<div id = "info"></div>
+<br/>
+
+
+
+<button onclick="doAdd()">click me!</button>
+
+<script type="text/javascript">
+	var info = document.getElementById("info");
+
+	function doAdd()
+	{
+		if(localStorage.pagecount)
+		{
+			localStorage.pagecount=Number(localStorage.pagecount) + 1;
+		}
+		else
+		{
+			localStorage.pagecount=1;
+		}
+
+		info.innerHTML =  "visits: " + localStorage.pagecount
+	}
+</script>
+
+
+</body>
+</html>
